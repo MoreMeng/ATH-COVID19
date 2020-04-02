@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>COVID-19 Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=K2D:wght@100;300;700&display=swap">
+    <style>
+        body {
+            font-family: 'K2D', sans-serif;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .equal-col {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .row {
+            margin-bottom: 0;
+        }
+
+        .col {
+            padding-top: 30px !important;
+            padding-bottom: 30px !important;
+        }
+
+        .is-size-1 {
+            font-size: 5rem !important;
+        }
+
+        .is-size-2 {
+            font-size: 3rem !important;
+        }
+
+        .is-size-3 {
+            font-size: 2.5rem !important;
+        }
+
+        .is-size-4 {
+            font-size: 2rem !important;
+        }
+
+        .is-size-5 {
+            font-size: 1.5rem !important;
+        }
+
+        .is-size-6 {
+            font-size: 1.25rem !important;
+        }
+
+        .is-size-7 {
+            font-size: 1rem !important;
+        }
+
+        .has-text-weight-bold {
+            font-weight: 700 !important;
+        }
+    </style>
+</head>
+
+<body class="black">
+
+    <div class="row center-align">
+        <h1 class="white-text ">สถานการณ์ประเทศไทย</h1>
+        <div class="col s12 red darken-2 white-text z-depth-3">
+            <div class="">
+                <p class="is-size-4 flow-text">ติดเชื้อสะสม</p>
+                <p class="is-size-1 flow-text has-text-weight-bold" id="Confirmed"></p>
+                <p class="is-size-6 flow-text" id="NewConfirmed"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row center-align equal-col">
+        <div class="col s4 cyan darken-1 white-text z-depth-3">
+            <p class="is-size-4">หายแล้ว</p>
+            <p class="is-size-1 has-text-weight-bold" id="Recovered"></p>
+            <p class="is-size-6" id="NewRecovered"></p>
+        </div>
+        <div class="col s4 lime white-txt z-depth-3">
+            <p class="is-size-4">รักษาอยู่ใน รพ.</p>
+            <p class="is-size-1 has-text-weight-bold" id="Hospitalized"></p>
+            <p class="is-size-6" id="NewHospitalized"></p>
+        </div>
+        <div class="col s4 grey darken-3 white-text z-depth-3">
+            <p class="is-size-4">เสียชีวิต</p>
+            <p class="is-size-1 has-text-weight-bold" id="Deaths"></p>
+            <p class="is-size-6" id="NewDeaths"></p>
+        </div>
+    </div>
+    <div class="row center-align">
+        <h1 class="white-text">สถานการณ์จังหวัดอ่างทอง</h1>
+        <div class="row equal-col white-text">
+            <div class="col s4 pink accent-3 z-depth-3">
+                <p class="is-size-4">ผู้ป่วยยืนยัน</p>
+                <p class="is-size-1 has-text-weight-bold" id="ผู้ป่วยยืนยัน"></p>
+            </div>
+            <div class="col s8 pink darken-2 z-depth-1">
+                <p class="is-size-4">ผู้ป่วยเข้าเกณฑ์สอบสวนโรค/ได้รับการตรวจ</p>
+                <p class="is-size-1 has-text-weight-bold" id="ผู้ป่วยเข้าเกณฑ์สอบสวนโรคได้รับการตรวจ"></p>
+                <div class="row">
+                    <div class="col s6 pink darken-3">
+                        <p class="is-size-6 ">ไม่พบเชื้อ</p>
+                        <p class="is-size-3 has-text-weight-bold" id="ไม่พบเชื้อ"></p>
+                    </div>
+                    <div class="col s6 pink darken-4">
+                        <p class="is-size-6">รอผลตรวจ</p>
+                        <p class="is-size-3 has-text-weight-bold" id="รอผลตรวจ"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row center-align equal-col">
+        <div class="col s12 amber darken-4 z-depth-3">
+            <p class="is-size-4 ">ผู้เดินทางกลับจากต่างประเทศ</p>
+            <p class="is-size-1 has-text-weight-bold" id="ผู้เดินทางกลับจากต่างประเทศ"></p>
+        </div>
+        <div class="col s4 amber darken-1 z-depth-3">
+            <p class="is-size-4 ">สิ้นสุดการกักตัว</p>
+            <p class="is-size-1 has-text-weight-bold" id="สิ้นสุดการเฝ้าระวังต่างประเทศ"></p>
+        </div>
+
+        <div class="col s8 amber darken-2  z-depth-1 ">
+            <p class="is-size-4 ">อยู่ระหว่างกักตัว</p>
+            <p class="is-size-1 has-text-weight-bold" id="เฝ้าระวังรวมต่างประเทศ"></p>
+            <div class="row">
+                <div class="col s4">
+
+                    <p class="is-size-5">เขตติดโรค</p>
+                    <p class="is-size-3 has-text-weight-bold" id="เฝ้าระวังเขตติดโรคติดต่ออันตรายต่างประเทศ"></p>
+                </div>
+                <div class="col s4">
+                    <p class="is-size-5">พื้นที่ระบาดต่อเนื่อง</p>
+                    <p class="is-size-3 has-text-weight-bold" id="เฝ้าระวังพทระบาดต่อเนื่องต่างประเทศ"></p>
+                </div>
+                <div class="col s4">
+                    <p class="is-size-5">ประเทศอื่นๆ</p>
+                    <p class="is-size-3 has-text-weight-bold" id="เฝ้าระวังประเภทอื่นๆต่างประเทศ"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row center-align">
+        <div class="col s12 purple darken-3 white-text">
+            <p class="is-size-4 ">ผู้เดินทางมาจาก กทม/ปริมณฑล</p>
+            <p class="is-size-1 has-text-weight-bold" id="ผู้เดินทางมาจากกทมปริมณฑล"></p>
+        </div>
+    </div>
+
+    <footer class="row grey-text text-darken-1">
+        <div class="center-align" id="UpdateDate"></div>
+        <div class="grey-text text-darken-3 right">Dev by MoreMeng</div>
+    </footer>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script async>
+        const get_thailand = () => {
+            $.ajax({
+                dataType: "json",
+                url: 'https://covid19.th-stat.com/api/open/today',
+                method: "GET",
+                async: true,
+                success: function (data) {
+                    $('#Confirmed').html(Number(data.Confirmed).toLocaleString());
+                    $('#Recovered').html(Number(data.Recovered).toLocaleString());
+                    $('#Hospitalized').html(Number(data.Hospitalized).toLocaleString());
+                    $('#Deaths').html(Number(data.Deaths).toLocaleString());
+
+                    let newConfirmed = (data.NewConfirmed > 0) ? `<i class="fas fa-arrow-up"></i> เพิ่ม ${Number(data.NewConfirmed).toLocaleString()}` : ``;
+                    let NewRecovered = (data.NewRecovered > 0) ? `<i class="fas fa-arrow-up"></i> เพิ่ม ${Number(data.NewRecovered).toLocaleString()}` : ``;
+                    let NewHospitalized = (data.NewHospitalized > 0) ? `<i class="fas fa-arrow-up"></i> เพิ่ม ${Number(data.NewHospitalized).toLocaleString()}` : ``;
+                    let NewDeaths = (data.NewDeaths > 0) ? `<i class="fas fa-arrow-up"></i> เพิ่ม ${Number(data.NewDeaths).toLocaleString()}` : ``;
+
+                    $('#NewConfirmed').html(newConfirmed);
+                    $('#NewRecovered').html(NewRecovered);
+                    $('#NewHospitalized').html(NewHospitalized);
+                    $('#NewDeaths').html(NewDeaths);
+
+                    $('#UpdateDate').html("อัพเดทข้อมูลล่าสุด : " + data.UpdateDate);
+                    console.log(`${+new Date} Get new Thailand`);
+                }
+            });
+            setTimeout(get_thailand, 1000 * 60 * 60);
+        }
+
+        const get_angthong = () => {
+            // https://spreadsheets.google.com/feeds/list/1LRjBuM5WSdv0aBKbw3kU2ks0CXJwCcYe00R3xZIGu-8/1/public/values?alt=json
+
+            // ID of the Google Spreadsheet
+            let spreadsheetID = "1LRjBuM5WSdv0aBKbw3kU2ks0CXJwCcYe00R3xZIGu-8";
+
+            // Make sure it is public or set to Anyone with link can view
+            let url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+
+            $.ajax({
+                dataType: "json",
+                url: url,
+                method: "GET",
+                async: true,
+                success: function (data) {
+                    $('#ผู้ป่วยยืนยัน').html(data.feed.entry[0].gsx$ผู้ป่วยยืนยัน.$t);
+                    $('#ผู้ป่วยเข้าเกณฑ์สอบสวนโรคได้รับการตรวจ').html(data.feed.entry[0].gsx$ผู้ป่วยเข้าเกณฑ์สอบสวนโรคได้รับการตรวจ.$t);
+                    $('#ไม่พบเชื้อ').html(data.feed.entry[0].gsx$ไม่พบเชื้อ.$t);
+                    $('#รอผลตรวจ').html(data.feed.entry[0].gsx$รอผลตรวจ.$t);
+                    $('#ผู้เดินทางกลับจากต่างประเทศ').html(data.feed.entry[0].gsx$ผู้เดินทางกลับจากต่างประเทศ.$t);
+                    $('#เฝ้าระวังรวมต่างประเทศ').html(data.feed.entry[0].gsx$เฝ้าระวังรวมต่างประเทศ.$t);
+                    $('#เฝ้าระวังเขตติดโรคติดต่ออันตรายต่างประเทศ').html(data.feed.entry[0].gsx$เฝ้าระวังเขตติดโรคติดต่ออันตรายต่างประเทศ.$t);
+                    $('#เฝ้าระวังพทระบาดต่อเนื่องต่างประเทศ').html(data.feed.entry[0].gsx$เฝ้าระวังพทระบาดต่อเนื่องต่างประเทศ.$t);
+                    $('#สิ้นสุดการเฝ้าระวังต่างประเทศ').html(data.feed.entry[0].gsx$สิ้นสุดการเฝ้าระวังต่างประเทศ.$t);
+                    $('#เฝ้าระวังประเภทอื่นๆต่างประเทศ').html(data.feed.entry[0].gsx$เฝ้าระวังประเภทอื่นๆต่างประเทศ.$t);
+                    $('#ผู้เดินทางมาจากกทมปริมณฑล').html(data.feed.entry[0].gsx$ผู้เดินทางมาจากกทมปริมณฑล.$t);
+                    $('#สิ้นสุดการเฝ้าระวังต่างประเทศ').html(data.feed.entry[0].gsx$สิ้นสุดการเฝ้าระวังต่างประเทศ.$t);
+                    console.log(`${+new Date} Get new Angthong`);
+                }
+            });
+            setTimeout(get_angthong, 1000 * 60 * 60);
+        }
+
+        get_thailand()
+        get_angthong()
+
+    </script>
+</body>
+
+</html>
