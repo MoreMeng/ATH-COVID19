@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>COVID-19</title>
+    <title>COVID-19 Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=K2D:wght@100;300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=K2D:wght@100;300;700&display=swap">
     <style>
         body {
             font-family: 'K2D', sans-serif;
@@ -156,7 +155,8 @@
     </div>
 
     <footer class="row grey-text text-darken-1">
-        <div class="content center-align" id="UpdateDate"></div>
+        <div class="center-align" id="UpdateDate"></div>
+        <div class="grey-text text-darken-3 right">Dev by MoreMeng</div>
     </footer>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -185,7 +185,7 @@
                     $('#NewDeaths').html(NewDeaths);
 
                     $('#UpdateDate').html("อัพเดทข้อมูลล่าสุด : " + data.UpdateDate);
-                    console.log(`Get new Thailand`);
+                    console.log(`${+new Date} Get new Thailand`);
                 }
             });
             setTimeout(get_thailand, 1000 * 60 * 60);
@@ -218,7 +218,7 @@
                     $('#เฝ้าระวังประเภทอื่นๆต่างประเทศ').html(data.feed.entry[0].gsx$เฝ้าระวังประเภทอื่นๆต่างประเทศ.$t);
                     $('#ผู้เดินทางมาจากกทมปริมณฑล').html(data.feed.entry[0].gsx$ผู้เดินทางมาจากกทมปริมณฑล.$t);
                     $('#สิ้นสุดการเฝ้าระวังต่างประเทศ').html(data.feed.entry[0].gsx$สิ้นสุดการเฝ้าระวังต่างประเทศ.$t);
-                    console.log(`Get new Angthong`);
+                    console.log(`${+new Date} Get new Angthong`);
                 }
             });
             setTimeout(get_angthong, 1000 * 60 * 60);
